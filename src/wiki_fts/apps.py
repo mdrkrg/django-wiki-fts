@@ -7,6 +7,7 @@ class WikiConfig(AppConfig):
     name = "wiki_fts"
 
     def ready(self):
+        import wiki_fts.signals  # noqa: F401
         from wiki.sites import site
         from wiki_fts.sites import WikiSite
 
