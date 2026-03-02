@@ -1,0 +1,44 @@
+[project]
+name = "wiki-fts"
+version = "0.1.0"
+description = "Provide full-text search capabilities for django-wiki!"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+authors = [{ name = "MidoriKurage", email = "kuragectl@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = ["wiki>=0.10,<13"]
+keywords = ["django", "wiki"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Environment :: Web Environment",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Wiki",
+  "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.29,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["pre-commit>=4.5.1", "ruff>=0.15.4"]
+
+[tool.uv]
+override-dependencies = ["pillow>=9.0.0"]
+
+[tool.ruff]
+target-version = "py310"
