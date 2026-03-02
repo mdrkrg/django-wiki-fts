@@ -1,10 +1,13 @@
+from typing import override
 from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.search import SearchVectorField
 from django.db import models
 from wiki.models import Article
 
 
-class SearchVectorField(models.Field):
-    def db_type(self, connection):
+class ConditionalSearchVectorField(SearchVectorField):
+    @override
+    def db_type(self, connection):  # type: ignore
         if connection.vendor == "postgresql":
             return "tsvector"
         return "text"
@@ -26,7 +29,7 @@ class SearchIndex(models.Model):
         related_name="search_index",
         primary_key=True,
     )
-    search_vector = SearchVectorField()
+    search_vector = ConditionalSearchVectorField()
     language = models.CharField(max_length=50, default="simple")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

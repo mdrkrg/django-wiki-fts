@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                         to="wiki.article",
                     ),
                 ),
-                ("search_vector", wiki_fts.models.SearchVectorField()),
+                ("search_vector", wiki_fts.models.ConditionalSearchVectorField()),
                 ("language", models.CharField(default="simple", max_length=50)),
                 ("created", models.DateTimeField(auto_now_add=True)),
                 ("updated", models.DateTimeField(auto_now=True)),
