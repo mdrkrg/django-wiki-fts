@@ -36,9 +36,20 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = ["pre-commit>=4.5.1", "ruff>=0.15.4"]
+test = [
+  "psycopg[binary]>=3.3.3",
+  "pytest>=9.0.2",
+  "pytest-django>=4.12.0",
+  "pytest-dotenv>=0.5.2",
+]
 
 [tool.uv]
 override-dependencies = ["pillow>=9.0.0"]
 
 [tool.ruff]
 target-version = "py310"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+pythonpath = ["."]
+env_files = [".env.test"]
