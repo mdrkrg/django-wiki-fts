@@ -1,8 +1,12 @@
 import logging
 import os
+from unittest.mock import MagicMock
 
 import psycopg
+import pytest
 from psycopg import sql
+
+from wiki_fts.providers.base import SearchProvider
 
 # Database setup
 
@@ -61,3 +65,18 @@ def pytest_unconfigure(config):
         logger.info(f"\nDropped test database: {DB_NAME}")
     finally:
         conn.close()
+
+
+@pytest.fixture(autouse=True)
+def mock_provider(monkeypatch):
+    """Replace get_provider() with a Mock."""
+    mock = MagicMock(spec=SearchProvider)
+
+    monkeypatch.setattr("wiki_fts.signals.get_provider", lambda: mock)
+    monkeypatch.setattr("wiki_fts.views.get_provider", lambda: mock)
+    monkeypatch.setattr(
+        "wiki_fts.management.commands.wiki_rebuild_index.get_provider",
+        lambda: mock,
+    )
+
+    return mock
