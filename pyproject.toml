@@ -35,7 +35,8 @@ requires = ["uv_build>=0.9.29,<0.10.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
-dev = ["pre-commit>=4.5.1", "ruff>=0.15.4"]
+dev = ["nox>=2026.2.9", "pre-commit>=4.5.1"]
+lint = ["ruff>=0.15.4"]
 test = [
   "psycopg[binary]>=3.3.3",
   "pytest>=9.0.2",
