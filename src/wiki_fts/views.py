@@ -1,5 +1,3 @@
-from typing import override
-
 from django.db.models import QuerySet
 from django.http import Http404
 from wiki import models
@@ -18,7 +16,6 @@ class FullTextSearchView(SearchView):
         provider = get_provider()
         return provider.search(articles, query)
 
-    @override
     def get_queryset(self):
         if not self.query:
             return models.Article.objects.none().order_by("-current_revision__created")

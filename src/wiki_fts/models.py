@@ -1,4 +1,3 @@
-from typing import override
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVectorField
 from django.db import models
@@ -6,7 +5,6 @@ from wiki.models import Article
 
 
 class ConditionalSearchVectorField(SearchVectorField):
-    @override
     def db_type(self, connection):  # type: ignore
         if connection.vendor == "postgresql":
             return "tsvector"
