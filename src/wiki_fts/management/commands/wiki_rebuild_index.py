@@ -10,6 +10,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         articles = Article.objects.all()
+        if not articles:
+            self.stdout.write(self.style.WARNING("No articles to update."))
+
         provider = get_provider()
         try:
             with transaction.atomic():
