@@ -3,6 +3,7 @@ from django.db import connection
 from django.db.models import F, QuerySet, Value
 from wiki.models import Article
 
+from wiki_fts import config
 from wiki_fts.models import SearchIndex
 from wiki_fts.providers.base import SearchProvider
 
@@ -26,7 +27,10 @@ class PostgresProvider(SearchProvider):
         if not revision:
             return
 
-        search_index, _ = SearchIndex.objects.get_or_create(article=article)
+        search_index, _ = SearchIndex.objects.get_or_create(
+            article=article,
+            defaults={"language": config.DEFAULT_LANGUAGE},
+        )
 
         SearchIndex.objects.filter(pk=article.pk).update(
             search_vector=(
