@@ -22,7 +22,6 @@ def remove_postgres_index(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ("wiki_fts", "0001_initial"),
-        ("wiki", "0003_mptt_upgrade"),
     ]
 
     operations = [
