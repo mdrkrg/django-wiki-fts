@@ -5,3 +5,5 @@ PROVIDER = getattr(settings, "WIKI_FTS_PROVIDER", "wiki_fts.providers.BasicProvi
 
 DEFAULT_LANGUAGE = getattr(settings, "WIKI_FTS_DEFAULT_LANGUAGE", "simple")
 """Default language for SearchIndex. Only applicable to PostgresProvider."""
+
+SQLITE_TOKENIZE = getattr(settings, "WIKI_FTS_SQLITE_TOKENIZE", "unicode61")
