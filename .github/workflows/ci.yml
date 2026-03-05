@@ -30,6 +30,8 @@ jobs:
     name: Lint
     runs-on: ubuntu-slim
     steps:
+      - uses: actions/checkout@v4
+
       - name: Setup Environment
         id: setup
         uses: ./.github/actions/setup-python-env
@@ -43,6 +45,8 @@ jobs:
     name: Format
     runs-on: ubuntu-slim
     steps:
+      - uses: actions/checkout@v4
+
       - name: Setup Environment
         id: setup
         uses: ./.github/actions/setup-python-env
@@ -75,6 +79,8 @@ jobs:
           - 5432:5432
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Setup Environment
         id: setup
         uses: ./.github/actions/setup-python-env
